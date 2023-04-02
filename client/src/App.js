@@ -1,7 +1,7 @@
 
 import './App.css';
 import {useState, useEffect} from "react";
-//function
+//function change
 import { getTest } from "./functions/test";
 
 function App() {
