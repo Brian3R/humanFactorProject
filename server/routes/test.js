@@ -5,7 +5,8 @@ const {
     getUser,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    deleteUsers
 } = require('../controllers/testController')
 
 //immport models
@@ -27,6 +28,8 @@ router.get('/:id', getUser)
 router.post('/', createUser)
 //delete user
 router.delete('/:id', deleteUser)
+//delete all users
+router.delete('/', deleteUsers)
 // update user
 router.patch('/:id', updateUser)
 
