@@ -2,11 +2,14 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const subSchema = new Schema({
+const clothing = new Schema({
 
             title: String,
+            clothing_type: String,
+            description: String,
             body_region: Number,
             color: String,
+            favorability: Number
     })
     
 
@@ -21,7 +24,7 @@ const userSchema = new Schema({
     },
     inventory:{
         type: Array,
-        items: [subSchema]
+        items: [clothing]
     },
     
 }, {timestamps: true})
