@@ -6,12 +6,16 @@ const clothing = new Schema({
 
             title: String,
             clothing_type: String,
-            description: String,
             body_region: Number,
             color: String,
             favorability: Number
     })
     
+    const body_region = new Schema({
+
+        type: Array,
+        items: [clothing]
+})
 
 const userSchema = new Schema({
     name:{
