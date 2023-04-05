@@ -3,7 +3,6 @@ import Navbar from './Navbar';
 import NewItemForm from './newitem/NewItemForm';
 
 const AddItem = () => {
-    
     return(
         <div>
             <Navbar/>

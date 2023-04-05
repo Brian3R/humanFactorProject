@@ -4,7 +4,6 @@ import {useState} from 'react';
 const ColorDropdown = (props) => {
     const colors = ["Red","Blue","Green","Yellow","Orange","Black","White"];
     const handleChange = (event) => {
-        //setColor(event.target.value);
         props.onChange(event.target.value);
     }
     return(
