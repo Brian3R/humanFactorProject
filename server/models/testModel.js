@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const clothing = new Schema({
 
             title: String,
-            clothing_type: String,
+            clothing_type: Number,
             body_region: Number,
             color: String,
             favorability: Number
@@ -28,7 +28,7 @@ const userSchema = new Schema({
     },
     inventory:{
         type: Array,
-        items: [clothing]
+        items: [body_region]
     },
     
 }, {timestamps: true})
