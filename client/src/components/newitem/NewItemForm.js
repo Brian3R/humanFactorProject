@@ -1,66 +1,103 @@
 import React from 'react';
 import {useState} from 'react';
-import GarmentTypeSelector from './GarmentTypeSelector';
-import ColorDropdown from './dropdowns/ColorDropdown';
+
 import SubmitButton from './SubmitButton';
-import HatDropdown from './dropdowns/HatDropdown';
-import OuterwearDropdown from './dropdowns/OuterwearDropdown';
-import TopDropdown from './dropdowns/TopDropdown';
-import BottomDropdown from './dropdowns/BottomDropdown';
-import ShoeDropdown from './dropdowns/ShoeDropdown';
 
 const NewItemForm = () => {
-    const [garmentName, setGarmentName] = useState('');
-    const [garmentType, setGarmentType] = useState('');
-    const [garmentSubtype, setGarmentSubtype] = useState('');
-    const [garmentColor, setGarmentColor] = useState('');
+    //state variables
+    const [name, setName] = useState('');
+    const [region, setRegion] = useState(-1);
+    const [type, setType] = useState('');
+    const [color, setColor] = useState('');
+    const [description, setDescription] = useState('');
+    //state change handlers
+    const handleNameChange = (event) => {
+        setName(event.target.value);
+    }
+    const handleRegionChange = (event) => {
+        setRegion(parseInt(event.target.value));
+        console.log(region)
+    }
+    const handleTypeChange = (event) => {
+        setType(event.target.value);
+    }
+    const handleColorChange = (event) => {
+        setColor(event.target.value);
+    }
+    const handleDescriptionChange = (event) => {
+        setDescription(event.target.value);
+    }
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(garmentName);
-        console.log(garmentType);
-        console.log(garmentSubtype);
-        console.log(garmentColor)
+        console.log(name);
+        console.log(region);
+        console.log(type);
+        console.log(color);
+        console.log(description);
     }
-    const handleNameChange = (event) => {
-        setGarmentName(event.target.value);
-    }
-    const handleTypeChange = (type) => {
-        setGarmentType(type);
-    }
-    const handleSubtypeChange = (subtype) => {
-        setGarmentSubtype(subtype);
-    }
-    const handleColorChange = (color) => {
-        setGarmentColor(color);
-    }
-    const renderSubcategoryDropdown = () => {
-        switch(garmentType) {
-            case "Hat":
-                return <HatDropdown onChange={handleSubtypeChange}/>
-            case "Outerwear":
-                return <OuterwearDropdown onChange={handleSubtypeChange}/>
-            case "Top":
-                return <TopDropdown onChange={handleSubtypeChange}/>
-            case "Bottom":
-                return <BottomDropdown onChange={handleSubtypeChange}/>
-            case "Shoe":
-                return <ShoeDropdown onChange={handleSubtypeChange}/>
-            default:
-                return <div></div>;
+    const renderTypeDropdown = () => {
+        switch(region) {
+            case 0:
+                return (
+                    <select onChange={handleTypeChange}>
+                        <option value={'ss_tee'}>Short Sleeve Tee</option>
+                        <option value={'ls_tee'}>Long Sleeve Tee</option>
+                    </select>
+                )
+            case 1:
+                return (
+                    <select onChange={handleTypeChange}>
+                        <option value={'shorts'}>Shorts</option>
+                        <option value={'jeans'}>Jeans</option>
+                        <option value={'sweatpants'}>Sweatpants</option>
+                    </select>
+                )
+            case 2:
+                return (
+                    <select onChange={handleTypeChange}>
+                        <option value={'running_shoes'}>Running Shoes</option>
+                        <option value={'low_tops'}>Low Top Sneakers</option>
+                        <option value={'high_tops'}>High Top Sneakers</option>
+                    </select>
+                )
         }
     }
     return (
         <form onSubmit={handleSubmit}>
             <label>Enter your garment name:</label>
             <br/>
-            <input type="text" value={garmentName} onChange={handleNameChange}/>
+            <input type="text" value={name} onChange={handleNameChange}/>
             <br/>
-            <label>Select your garment type:</label>
-            <GarmentTypeSelector onChange={handleTypeChange}/>
-            {garmentType && <label>Select your garment subtype:</label>}
-            {renderSubcategoryDropdown()}
+            <label>Select your item's body region:</label>
+            <br/>
+            <select onChange={handleRegionChange}>
+                <option value={'-1'}>Select a region</option>
+                <option value={'0'}>Top</option>
+                <option value={'1'}>Bottom</option>
+                <option value={'2'}>Shoes</option>
+            </select>
+            <br/>
+            {region !== -1 && <label>Select your item's type:</label>}
+            <br/>
+            {renderTypeDropdown()}
+            <br/>
             <label>Select your garment's color:</label>
-            <ColorDropdown onChange={handleColorChange}/>
+            <br/>
+            <select onChange={handleColorChange}>
+                <option value={'red'}>Red</option>
+                <option value={'orange'}>Orange</option>
+                <option value={'yellow'}>Yellow</option>
+                <option value={'green'}>Green</option>
+                <option value={'blue'}>Blue</option>
+                <option value={'purple'}>Purple</option>
+                <option value={'white'}>White</option>
+                <option value={'gray'}>Gray</option>
+                <option value={'black'}>Black</option>
+            </select>
+            <label>Describe your item:</label>
+            <br/>
+            <input type="text" value={description} onChange={handleDescriptionChange}/>
+            <br/>
             <SubmitButton/>
         </form>
     );
