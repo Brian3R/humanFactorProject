@@ -46,10 +46,10 @@ const deleteUser = async (req, res) =>{
 
 //delete all users
 //delete workout
-const deleteUsers = async (req, res) =>{
+/*const deleteUsers = async (req, res) =>{
     const users = await testModel.findOneAndDelete({})
     res.status(200).json(users)
-}
+}*/
 
 //update workout
 const updateUser = async (req, res) =>{
@@ -72,6 +72,6 @@ module.exports ={
     getUser,
     createUser,
     deleteUser,
-    deleteUsers,
+    //deleteUsers,
     updateUser,
 }

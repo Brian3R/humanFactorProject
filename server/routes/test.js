@@ -29,7 +29,7 @@ router.post('/', createUser)
 //delete user
 router.delete('/:id', deleteUser)
 //delete all users
-router.delete('/', deleteUsers)
+//router.delete('/', deleteUsers)
 // update user
 router.patch('/:id', updateUser)
 
