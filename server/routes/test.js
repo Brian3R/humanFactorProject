@@ -6,7 +6,6 @@ const {
     createUser,
     updateUser,
     deleteUser,
-    deleteUsers
 } = require('../controllers/testController')
 
 //immport models
