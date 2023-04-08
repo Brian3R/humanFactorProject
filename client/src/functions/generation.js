@@ -166,9 +166,9 @@ function generation (inventory){
     console.log("You should wear your", selectedShirtTitle, "with your", selectedPantsTitle, "and your", selectedShoesTitle)
 
     const outfit = {
-        top: userDataObj.inventory[shirtIndex][selectedShirtIndex],
-        bottom: userDataObj.inventory[pantsIndex][selectedPantsIndex],
-        shoes: userDataObj.inventory[shoesIndex][selectedShoesIndex]
+        top: selectedShirtIndex,
+        bottom: selectedPantsIndex,
+        shoes: selectedShoesIndex
     };
 
     return outfit;
