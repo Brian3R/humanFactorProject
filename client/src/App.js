@@ -8,6 +8,8 @@ import Home from './components/Home';
 import AddItem from './components/AddItem';
 import Generator from './components/Generator';
 import Inventory from './components/Inventory';
+import SignUp from './components/SignUp';
+import Login from './components/Login';
 
 function App() {
 
@@ -18,6 +20,8 @@ function App() {
         <Route path="/additem" element={<AddItem/>}/>
         <Route path="/generator" element={<Generator/>}/>
         <Route path="/inventory" element={<Inventory/>}/>
+        <Route path="/signUp" element={<SignUp/>}/>
+        <Route path="/login" element={<Login/>}/>
       </Routes>
     </BrowserRouter>
   )
