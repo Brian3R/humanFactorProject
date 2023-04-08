@@ -9,7 +9,7 @@ const NewItemForm = () => {
     const [region, setRegion] = useState(-1);
     const [type, setType] = useState('');
     const [color, setColor] = useState('');
-    const [description, setDescription] = useState('');
+    const [favorability, setFavorability] = useState('');
     //state change handlers
     const handleNameChange = (event) => {
         setName(event.target.value);
@@ -24,13 +24,16 @@ const NewItemForm = () => {
     const handleColorChange = (event) => {
         setColor(event.target.value);
     }
+    const handleFavorabilityChange = (event) => {
+        setFavorability(parseInt(event.target.value));
+    }
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log(name);
         console.log(region);
         console.log(type);
         console.log(color);
-        console.log(description);
+        console.log(favorability);
         try {
             const response = await fetch('http://localhost:8080/api/test/642dc9ec198dd112318461c1');
             const user = await response.json();
@@ -39,7 +42,7 @@ const NewItemForm = () => {
                 clothing_type: type,
                 body_region: region,
                 color: color,
-                favorability: 2
+                favorability: favorability
             };
             user.inventory[region].push(newItem);
             const updateResponse = await fetch('http://localhost:8080/api/test/642dc9ec198dd112318461c1', {
@@ -55,6 +58,7 @@ const NewItemForm = () => {
             setType('');
             setRegion(-1);
             setColor('');
+            window.location.reload(true);
         }
         catch (error) {
             console.error(error);
@@ -116,14 +120,35 @@ const NewItemForm = () => {
             <select onChange={handleColorChange}>
                 <option value={''}>Select a color</option>
                 <option value={'red'}>Red</option>
+                <option value={'pink'}>Pink</option>
                 <option value={'orange'}>Orange</option>
                 <option value={'yellow'}>Yellow</option>
                 <option value={'green'}>Green</option>
-                <option value={'blue'}>Blue</option>
+                <option value={'lightBlue'}>Light Blue</option>
+                <option value={'darkBlue'}>Dark Blue</option>
                 <option value={'purple'}>Purple</option>
+                <option value={'brown'}>Brown</option>
+                <option value={'beige'}>Beige</option>
                 <option value={'white'}>White</option>
                 <option value={'gray'}>Gray</option>
                 <option value={'black'}>Black</option>
+            </select>
+            <br/>
+            <label>How much do you like this item (1-10)</label>
+            <br/>
+            <select onChange={handleFavorabilityChange}>
+                <option value={''}>Select a favorability</option>
+                <option value={'0'}>0</option>
+                <option value={'1'}>1</option>
+                <option value={'2'}>2</option>
+                <option value={'3'}>3</option>
+                <option value={'4'}>4</option>
+                <option value={'5'}>5</option>
+                <option value={'6'}>6</option>
+                <option value={'7'}>7</option>
+                <option value={'8'}>8</option>
+                <option value={'9'}>9</option>
+                <option value={'10'}>10</option>
             </select>
             <br/>
             <SubmitButton/>
