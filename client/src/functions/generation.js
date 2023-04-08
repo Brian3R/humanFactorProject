@@ -2,7 +2,8 @@
 
 // Input user's "inventory" data into "userDataJSON" to be used for generation
 let userDataJSON = '{ "inventory": [ [' + 
-'{"title": "Green Shirt with square", "clothing_type": "shirt", "body_region": 0, "color": "green", "favorability": 2 }],'+
+'{"title": "green shirt with square", "clothing_type": "shirt", "body_region": 0, "color": "green", "favorability": 2 },'+
+'{"title": "green shirt with triangle","clothing_type": "shirt","body_region": 0,"color": "green","favorability": 8}],'+
 '[{"title": "denim jeans","clothing_type": "pants","body_region": 1,"color": "darkBlue","favorability": 10},' +
 '{"title": "black pants","clothing_type": "pants","body_region": 1,"color": "black","favorability": 8}],'+
 '[{"title": "boots","clothing_type": "shoes","body_region": 2,"color": "darkBlue","favorability": 2}]]}';
@@ -25,22 +26,58 @@ let shirtColor = "";
 // Index location of the selected shirt
 let selectedShirtIndex = 0;
 
-// Current highest favorability score
-let highestFav = 0;
+// Variables used to select shirt
+score1 = 0;
+score1Index = 0;
+score2 = 0;
+score2Index = 0;
+score3 = 0;
+score3Index = 0;
 
-// Search for highest favorability score
-// This will likely change to search for the top few, however our example so far only has 1 shirt
 for(var i=0; i < userDataObj.inventory[shirtIndex].length; i++) {
-    if(userDataObj.inventory[shirtIndex][i].favorability >= highestFav) {
-        selectedShirtIndex = i;
-        selectedShirtTitle = userDataObj.inventory[shirtIndex][i].title;
-        shirtColor = userDataObj.inventory[shirtIndex][i].color
+    if(userDataObj.inventory[shirtIndex][i].favorability >= score1) {
+        score3 = score2
+        score3Index = score2Index
+        score2 = score1
+        score2Index = score1Index
+        score1 = userDataObj.inventory[shirtIndex][i].favorability
+        score1Index = i
     }
+    else if(userDataObj.inventory[shirtIndex][i].favorability >= score2){
+        score3 = score2
+        score3Index = score2Index
+        score2 = userDataObj.inventory[shirtIndex][i].favorability
+        score2Index = i
+    }
+    else if(userDataObj.inventory[shirtIndex][i].favorability >= score3){
+        score3 = userDataObj.inventory[shirtIndex][i].favorability
+        score3Index = i
+    }
+}
+
+totalScore = score1 + score2 + score3;
+randomSeed = Math.floor(Math.random() * totalScore)
+
+if (randomSeed < score1){
+    selectedShirtIndex = score1Index;
+    selectedShirtTitle = userDataObj.inventory[shirtIndex][score1Index].title;
+    shirtColor = userDataObj.inventory[shirtIndex][score1Index].color;
+}
+else if(randomSeed < score2){
+    selectedShirtIndex = score2Index;
+    selectedShirtTitle = userDataObj.inventory[shirtIndex][score2Index].title;
+    shirtColor = userDataObj.inventory[shirtIndex][score2Index].color;
+}
+else{
+    selectedShirtIndex = score3Index;
+    selectedShirtTitle = userDataObj.inventory[shirtIndex][score3Index].title;
+    shirtColor = userDataObj.inventory[shirtIndex][score3Index].color;
 }
 
 console.log(shirtColor);
 //console.log(selectedShirtIndex);
 console.log(selectedShirtTitle);
+console.log("-----------------------------")
 
 // Index location of pants
 let pantsIndex = 1;
@@ -81,6 +118,7 @@ for(var i=0; i < userDataObj.inventory[pantsIndex].length; i++) {
 console.log(pantsColor);
 //console.log(selectedPantsIndex);
 console.log(selectedPantsTitle);
+console.log("-----------------------------")
 
 // Index location of shoes
 let shoesIndex = 2;
@@ -121,6 +159,7 @@ for(var i=0; i < userDataObj.inventory[shoesIndex].length; i++) {
 console.log(shoesColor);
 //console.log(selectedShoesIndex);
 console.log(selectedShoesTitle);
+console.log("-----------------------------")
 
 console.log("You should wear your", selectedShirtTitle, "with your", selectedPantsTitle, "and your", selectedShoesTitle)
 
