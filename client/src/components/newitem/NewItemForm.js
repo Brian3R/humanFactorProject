@@ -35,7 +35,7 @@ const NewItemForm = () => {
         console.log(color);
         console.log(favorability);
         try {
-            const response = await fetch('http://localhost:8080/api/test/'+ localStorage.getItem('userid'));
+            const response = await fetch('http://localhost:8080/api/test/'+ sessionStorage.getItem('userid'));
             const user = await response.json();
             const newItem = {
                 title: name,
@@ -45,7 +45,7 @@ const NewItemForm = () => {
                 favorability: favorability
             };
             user.inventory[region].push(newItem);
-            const updateResponse = await fetch('http://localhost:8080/api/test/'+ localStorage.getItem('userid'), {
+            const updateResponse = await fetch('http://localhost:8080/api/test/'+ sessionStorage.getItem('userid'), {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
