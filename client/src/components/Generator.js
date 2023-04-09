@@ -13,7 +13,7 @@ const Generator = () => {
         fetchInventory();
     },[]);
     const fetchInventory = async () => {
-        const response = await fetch('http://localhost:8080/api/test/'+ localStorage.getItem('userid'));
+        const response = await fetch('http://localhost:8080/api/test/'+ sessionStorage.getItem('userid'));
         const responseParsed = await response.json();
         setInventory(responseParsed.inventory);
     }

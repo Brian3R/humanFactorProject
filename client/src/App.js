@@ -10,8 +10,10 @@ import Generator from './components/Generator';
 import Inventory from './components/Inventory';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
+import React, { useEffect } from "react";
 
 function App() {
+  
 
   return(
     <BrowserRouter>

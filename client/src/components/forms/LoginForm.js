@@ -32,14 +32,14 @@ const LoginForm = () => {
                 let user = await response.json();
                 setName('');
                 setPassword('');
-                localStorage.setItem('userid', user._id)
+                sessionStorage.setItem('userid', user._id)
             }
             catch (error) {
                 console.error(error);
             }
             await setFailure(false);
             window.location.reload(true);
-            console.log("User Id: " + localStorage.getItem('userid'))
+            console.log("User Id: " + sessionStorage.getItem('userid'))
         }
         else{
             setFailure(true);

@@ -38,7 +38,8 @@ const SignUpForm = () => {
                         password: password,
                         inventory: [[],[],[]]
                     })
-                });
+                }
+                );
                 setName('');
                 setPassword('');
             }
@@ -46,11 +47,19 @@ const SignUpForm = () => {
                 console.error(error);
             }
             await setFailure(false);
-            window.location.reload(true);
+            const response = await fetch('http://localhost:8080/api/test/search/' + name);
+                let user = await response.json();
+                setName('');
+                setPassword('');
+                sessionStorage.setItem('userid', user._id)
+
+                window.location.reload(true);
+
         }
         else{
             setFailure(true);
         }
+        
     }
     return (
         <form onSubmit={handleSubmit}>
