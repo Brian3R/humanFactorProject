@@ -10,6 +10,7 @@ const NewItemForm = () => {
     const [type, setType] = useState('');
     const [color, setColor] = useState('');
     const [favorability, setFavorability] = useState('');
+    const [failure, setFailure] = useState(false);
     //state change handlers
     const handleNameChange = (event) => {
         setName(event.target.value);
@@ -34,6 +35,10 @@ const NewItemForm = () => {
         console.log(type);
         console.log(color);
         console.log(favorability);
+        if(!(name && region !== -1 && type && color && favorability)) {
+            setFailure(true);
+            return;
+        }
         try {
             const response = await fetch('http://localhost:8080/api/test/'+ sessionStorage.getItem('userid'));
             const user = await response.json();
@@ -151,6 +156,8 @@ const NewItemForm = () => {
                 <option value={'9'}>9</option>
                 <option value={'10'}>10</option>
             </select>
+            <br/>
+            {failure && <p style={{color:'red'}}>You must fill all fields before submitting</p>}
             <br/>
             <SubmitButton/>
         </form>
