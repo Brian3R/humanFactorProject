@@ -53,6 +53,18 @@ const loginUser = async (req,res) => {
         res.json({success: false, message: 'Invalid password'})
     }
 }
+//sign up user
+const signUpUser = async (req,res) => {
+    const {name, password} = req.body
+    const user = await testModel.findOne({name})
+    if(!user){
+        res.json({success: true, message: 'Open UserName'})
+    }
+    else{
+        res.status(404).json({success: false, message: 'Username Taken'}) 
+    }
+    
+}
 //delete workout
 const deleteUser = async (req, res) =>{
     const {id} = req.params
@@ -97,5 +109,6 @@ module.exports ={
     //deleteUsers,
     updateUser,
     getUserByName,
-    loginUser
+    loginUser,
+    signUpUser
 }

@@ -7,7 +7,8 @@ const {
     updateUser,
     deleteUser,
     getUserByName,
-    loginUser
+    loginUser,
+    signUpUser
 } = require('../controllers/testController')
 
 //immport models
@@ -28,6 +29,8 @@ router.get('/search/:name',getUserByName)
 router.get('/:id', getUser)
 // login user
 router.post('/login', loginUser)
+//sign up user
+router.post('/signup', signUpUser)
 //post user
 router.post('/', createUser)
 //delete user

@@ -15,6 +15,16 @@ const SignUpForm = () => {
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const check = await fetch('http://localhost:8080/api/test/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({name, password})
+            
+        });
+        const data = await check.json();
+        if(data.success){
         try {
             const response = await fetch('http://localhost:8080/api/test/', {
                 method: 'POST',
@@ -35,6 +45,10 @@ const SignUpForm = () => {
             console.error(error);
         }
         window.location.reload(true);
+    }
+    else{
+
+    }
     }
     return (
         <form onSubmit={handleSubmit}>
