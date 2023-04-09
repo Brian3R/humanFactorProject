@@ -38,7 +38,21 @@ const createUser = async (req,res) => {
         res.status(400).json({error: error.message})
     }
 }
-
+//login
+const loginUser = async (req,res) => {
+    const {name, password} = req.body
+    const user = await testModel.findOne({name})
+    if(!user){
+        return res.status(404).json({error: 'No user found'})
+    }
+    const pass_check = password === user.password
+    if(pass_check){
+        res.json({success: true})
+    }
+    else{
+        res.json({success: false, message: 'Invalid password'})
+    }
+}
 //delete workout
 const deleteUser = async (req, res) =>{
     const {id} = req.params
@@ -82,5 +96,6 @@ module.exports ={
     deleteUser,
     //deleteUsers,
     updateUser,
-    getUserByName
+    getUserByName,
+    loginUser
 }

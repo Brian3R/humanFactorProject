@@ -16,6 +16,16 @@ const LoginForm = () => {
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const check = await fetch('http://localhost:8080/api/test/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({name, password})
+            
+        });
+        const data = await check.json();
+        if(data.success){
         try {
             const response = await fetch('http://localhost:8080/api/test/search/' + name, {
                 /*
@@ -35,6 +45,10 @@ const LoginForm = () => {
         }
         window.location.reload(true);
         console.log("User Id: " + localStorage.getItem('userid'))
+        }
+        else{
+            
+        }
     }
     return (
         <form onSubmit={handleSubmit}>
