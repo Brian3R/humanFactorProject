@@ -14,7 +14,7 @@ const Navbar = () => {
         }
     }
     const handleSignout = async () => {
-        await sessionStorage.removeItem('userid');
+        sessionStorage.removeItem('userid');
         window.location.reload(true);
     }
     return (
