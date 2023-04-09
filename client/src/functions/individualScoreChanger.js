@@ -3,19 +3,23 @@
 async function individualScoreChanger (index, bodyRegion, isLiked){
     const response = await fetch('http://localhost:8080/api/test/' + window.userid);
     const user = await response.json();
-
-    score = user.inventory[bodyRegion][index].favorability
-
+    console.log(user);
+    console.log(user.inventory[bodyRegion][index].favorability);
     if (isLiked == true){
-        if (score < 10)
-            score += 1
+        if (user.inventory[bodyRegion][index].favorability < 10) { 
+            user.inventory[bodyRegion][index].favorability++;
+        }
     }
     else if (isLiked == false){
-        if (score > 0)
-            score += -1
+        if (user.inventory[bodyRegion][index].favorability > 0) {
+            user.inventory[bodyRegion][index].favorability--;
+        }
     }
+    console.log(user);
+    console.log(user.inventory[bodyRegion][index].favorability);
 
-    user.inventory[bodyRegion][index].favorability = score
+    
+
 
     const updateResponse = await fetch('http://localhost:8080/api/test/' + window.userid, {
                 method: 'PATCH',
@@ -24,8 +28,9 @@ async function individualScoreChanger (index, bodyRegion, isLiked){
                 },
                 body: JSON.stringify(user)
             });
-            const updatedUser = await updateResponse.json();
-            console.log(updatedUser);
+    console.log(response.status);
+    const updatedUser = await updateResponse.json();
+    console.log(updatedUser);
 }
 
 export default individualScoreChanger;
