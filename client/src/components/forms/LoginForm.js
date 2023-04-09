@@ -7,6 +7,7 @@ const LoginForm = () => {
     //state variables
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
+    const [failure, setFailure] = useState(false);
     //state change handlers
     const handleNameChange = (event) => {
         setName(event.target.value);
@@ -26,28 +27,22 @@ const LoginForm = () => {
         });
         const data = await check.json();
         if(data.success){
-        try {
-            const response = await fetch('http://localhost:8080/api/test/search/' + name, {
-                /*
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },*/
-                
-            });
-            let user = await response.json();
-            setName('');
-            setPassword('');
-            localStorage.setItem('userid', user._id)
-        }
-        catch (error) {
-            console.error(error);
-        }
-        window.location.reload(true);
-        console.log("User Id: " + localStorage.getItem('userid'))
+            try {
+                const response = await fetch('http://localhost:8080/api/test/search/' + name);
+                let user = await response.json();
+                setName('');
+                setPassword('');
+                localStorage.setItem('userid', user._id)
+            }
+            catch (error) {
+                console.error(error);
+            }
+            await setFailure(false);
+            window.location.reload(true);
+            console.log("User Id: " + localStorage.getItem('userid'))
         }
         else{
-            
+            setFailure(true);
         }
     }
     return (
@@ -59,6 +54,8 @@ const LoginForm = () => {
             <label>Enter your Password:</label>
             <br/>
             <input type="text" value={password} onChange={handlePasswordChange}/>
+            <br/>
+            {failure && <p style={{color:'red'}}>Wrong username or password. Please try again.</p>}
             <br/>
             <SubmitButton/>
         </form>

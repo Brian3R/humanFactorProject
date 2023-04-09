@@ -27,8 +27,8 @@ const Generator = () => {
             setAlreadyLiked(true);
         }
     }
-    const handleDislike = () => {
-        outfitScoreChanger(indexes.top,indexes.bottom,indexes.shoes,false);
+    const handleDislike = async () => {
+        await outfitScoreChanger(indexes.top,indexes.bottom,indexes.shoes,false);
         window.location.reload(true);
     }
     const translateType = (type) => {
@@ -90,7 +90,7 @@ const Generator = () => {
                             </tr>
                         </tbody>
                     </table>
-                    <button onClick={handleLike}>I like this outfit</button>
+                    {!alreadyLiked && <button onClick={handleLike}>I like this outfit</button>}
                     {!alreadyLiked && <button onClick={handleDislike}>I don't like this outfit</button>}
                 </div>
             }

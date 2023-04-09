@@ -5,13 +5,13 @@ async function individualScoreChanger (index, bodyRegion, isLiked){
     const user = await response.json();
     console.log(user);
     console.log(user.inventory[bodyRegion][index].favorability);
-    if (isLiked == true){
+    if (isLiked){
         if (user.inventory[bodyRegion][index].favorability < 10) { 
             user.inventory[bodyRegion][index].favorability++;
         }
     }
-    else if (isLiked == false){
-        if (user.inventory[bodyRegion][index].favorability > 0) {
+    if (!isLiked){
+        if (user.inventory[bodyRegion][index].favorability > 1) {
             user.inventory[bodyRegion][index].favorability--;
         }
     }

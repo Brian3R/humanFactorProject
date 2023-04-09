@@ -58,7 +58,7 @@ const NewItemForm = () => {
             setType('');
             setRegion(-1);
             setColor('');
-            window.location.reload(true);
+            //window.location.reload(true);
         }
         catch (error) {
             console.error(error);

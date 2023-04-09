@@ -6,6 +6,7 @@ const SignUpForm = () => {
     //state variables
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
+    const [failure, setFailure] = useState(false);
     //state change handlers
     const handleNameChange = (event) => {
         setName(event.target.value);
@@ -25,30 +26,31 @@ const SignUpForm = () => {
         });
         const data = await check.json();
         if(data.success){
-        try {
-            const response = await fetch('http://localhost:8080/api/test/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    _id:"hello",
-                    name: name,
-                    password: password,
-                    inventory: [[],[],[]]
-                })
-            });
-            setName('');
-            setPassword('');
+            try {
+                const response = await fetch('http://localhost:8080/api/test/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _id:"hello",
+                        name: name,
+                        password: password,
+                        inventory: [[],[],[]]
+                    })
+                });
+                setName('');
+                setPassword('');
+            }
+            catch (error) {
+                console.error(error);
+            }
+            await setFailure(false);
+            window.location.reload(true);
         }
-        catch (error) {
-            console.error(error);
+        else{
+            setFailure(true);
         }
-        window.location.reload(true);
-    }
-    else{
-
-    }
     }
     return (
         <form onSubmit={handleSubmit}>
@@ -59,6 +61,8 @@ const SignUpForm = () => {
             <label>Enter your Password:</label>
             <br/>
             <input type="text" value={password} onChange={handlePasswordChange}/>
+            <br/>
+            {failure && <p style={{color:'red'}}>Username already exists. Please try again.</p>}
             <br/>
             <SubmitButton/>
         </form>
