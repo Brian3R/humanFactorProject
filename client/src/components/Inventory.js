@@ -13,7 +13,7 @@ const Inventory = () => {
         const responseParsed = await response.json()
         setData(responseParsed.inventory)
     }
-    if(!localStorage.getItem('userid')) {
+    if(!sessionStorage.getItem('userid')) {
         return (
             <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
                 <div style={{width: '800px', margin: '0 auto'}}>
