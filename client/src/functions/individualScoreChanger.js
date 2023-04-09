@@ -1,7 +1,7 @@
 
 
 async function individualScoreChanger (index, bodyRegion, isLiked){
-    const response = await fetch('http://localhost:8080/api/test/' + window.userid);
+    const response = await fetch('http://localhost:8080/api/test/' + localStorage.getItem('userid'));
     const user = await response.json();
     console.log(user);
     console.log(user.inventory[bodyRegion][index].favorability);
@@ -21,7 +21,7 @@ async function individualScoreChanger (index, bodyRegion, isLiked){
     
 
 
-    const updateResponse = await fetch('http://localhost:8080/api/test/' + window.userid, {
+    const updateResponse = await fetch('http://localhost:8080/api/test/' + localStorage.getItem('userid'), {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'

@@ -37,10 +37,10 @@ const Inventory = () => {
     const handleDeletion = async (deleted_item) => {
         console.log(deleted_item);
         try {
-            const response = await fetch('http://localhost:8080/api/test/' + window.userid);
+            const response = await fetch('http://localhost:8080/api/test/' + localStorage.getItem('userid'));
             let user = await response.json();
             user.inventory[deleted_item.body_region] = user.inventory[deleted_item.body_region].filter((item) => item.title !== deleted_item.title);
-            const updateResponse = await fetch('http://localhost:8080/api/test/' + window.userid, {
+            const updateResponse = await fetch('http://localhost:8080/api/test/' + localStorage.getItem('userid'), {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'

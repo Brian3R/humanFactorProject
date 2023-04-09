@@ -25,7 +25,7 @@ const SignUpForm = () => {
                     _id:"hello",
                     name: name,
                     password: password,
-                    inventory: []
+                    inventory: [[],[],[]]
                 })
             });
             setName('');
