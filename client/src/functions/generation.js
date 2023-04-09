@@ -254,3 +254,5 @@ function colorMatcher (color1, color2) {
         else
             return false;
 }
+
+export default generation;

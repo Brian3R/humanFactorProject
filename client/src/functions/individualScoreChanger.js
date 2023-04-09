@@ -1,3 +1,5 @@
+
+
 async function individualScoreChanger (index, bodyRegion, isLiked){
     const response = await fetch('http://localhost:8080/api/test/642dc9ec198dd112318461c1');
     const user = await response.json();
@@ -25,3 +27,5 @@ async function individualScoreChanger (index, bodyRegion, isLiked){
             const updatedUser = await updateResponse.json();
             console.log(updatedUser);
 }
+
+export default individualScoreChanger;
