@@ -6,6 +6,7 @@ const {
     createUser,
     updateUser,
     deleteUser,
+    getUserByName
 } = require('../controllers/testController')
 
 //immport models
@@ -18,11 +19,13 @@ const {getTest} = require("../controllers/testController");
 //import middlewares
 
 //api routes
-
 // all users
 router.get('/', getUsers)
+// user by name
+router.get('/search/:name',getUserByName)
 //single user
 router.get('/:id', getUser)
+
 //post user
 router.post('/', createUser)
 //delete user

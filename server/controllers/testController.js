@@ -11,7 +11,7 @@ const getUsers = async (req, res) => {
 const getUser = async (req,res) => {
     const {id} = req.params;
     if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error: 'No Such User'})
+        return res.status(404).json({error: 'No Such User here'})
     }
     const user = await testModel.findById(id)
     if(!user){
@@ -21,7 +21,13 @@ const getUser = async (req,res) => {
 }
 
 //get user by username
-
+const getUserByName = async (req,res) => {
+    const user = await testModel.findOne({name: req.params.name})
+    if(!user){
+        return res.status(404).json({error: 'No user found'})
+    }
+    res.status(200).json(user)
+}
 //post new user
 const createUser = async (req,res) => {
     const {name, password, inventory} = req.body
@@ -76,5 +82,5 @@ module.exports ={
     deleteUser,
     //deleteUsers,
     updateUser,
-    
+    getUserByName
 }

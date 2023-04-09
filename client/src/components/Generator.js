@@ -13,7 +13,7 @@ const Generator = () => {
         fetchInventory();
     },[]);
     const fetchInventory = async () => {
-        const response = await fetch('http://localhost:8080/api/test/642dc9ec198dd112318461c1');
+        const response = await fetch('http://localhost:8080/api/test/'+window.userid);
         const responseParsed = await response.json();
         setInventory(responseParsed.inventory);
     }

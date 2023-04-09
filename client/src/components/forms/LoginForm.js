@@ -2,6 +2,7 @@ import React from 'react';
 import {useState} from 'react';
 import SubmitButton from '../newitem/SubmitButton';
 
+
 const LoginForm = () => {
     //state variables
     const [name, setName] = useState('');
@@ -16,25 +17,24 @@ const LoginForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch('http://localhost:8080/api/test/', {
-                method: 'POST',
+            const response = await fetch('http://localhost:8080/api/test/search/' + name, {
+                /*
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    _id:"hello",
-                    name: name,
-                    password: password,
-                    inventory: []
-                })
+                },*/
+                
             });
+            let user = await response.json();
             setName('');
             setPassword('');
+            localStorage.setItem('userid', user._id)
         }
         catch (error) {
             console.error(error);
         }
         window.location.reload(true);
+        console.log("User Id: " + localStorage.getItem('userid'))
     }
     return (
         <form onSubmit={handleSubmit}>

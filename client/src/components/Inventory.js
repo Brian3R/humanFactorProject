@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './Navbar'
 import {useState, useEffect} from 'react';
 
+
 const Inventory = () => {
     const [data,setData] = useState([]);
 
@@ -10,7 +11,8 @@ const Inventory = () => {
     },[])
 
     const fetchInventory = async () => {
-        const response = await fetch('http://localhost:8080/api/test/642dc9ec198dd112318461c1')
+        
+        const response = await fetch('http://localhost:8080/api/test/' + localStorage.getItem('userid'))
         const responseParsed = await response.json()
         setData(responseParsed.inventory)
     }
@@ -35,10 +37,10 @@ const Inventory = () => {
     const handleDeletion = async (deleted_item) => {
         console.log(deleted_item);
         try {
-            const response = await fetch('http://localhost:8080/api/test/642dc9ec198dd112318461c1');
+            const response = await fetch('http://localhost:8080/api/test/' + window.userid);
             let user = await response.json();
             user.inventory[deleted_item.body_region] = user.inventory[deleted_item.body_region].filter((item) => item.title !== deleted_item.title);
-            const updateResponse = await fetch('http://localhost:8080/api/test/642dc9ec198dd112318461c1', {
+            const updateResponse = await fetch('http://localhost:8080/api/test/' + window.userid, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
