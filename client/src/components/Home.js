@@ -3,11 +3,13 @@ import Navbar from './Navbar';
 
 const Home = () => {
     return (
-        <div>
-            <Navbar/>
-            <h1>
-                Home!
-            </h1>
+        <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
+            <div style={{width: '700px', margin: '0 auto'}}>
+                <Navbar/>
+                <h1>
+                    Home!
+                </h1>
+            </div>
         </div>
     );
 }

@@ -4,12 +4,14 @@ import SignUpForm from './forms/SignUpForm';
 
 const SignUp = () => {
     return(
-        <div>
-            <Navbar/>
-            <h1>
-                Sign Up
-            </h1>
-            <SignUpForm/>
+        <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
+            <div style={{width: '700px', margin: '0 auto'}}>
+                <Navbar/>
+                <h1>
+                    Sign Up
+                </h1>
+                <SignUpForm/>
+            </div>
         </div>
     );
 }

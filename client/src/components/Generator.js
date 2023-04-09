@@ -54,46 +54,48 @@ const Generator = () => {
         padding: '8px'
     };
     return (
-        <div>
-            <Navbar/>
-            <h1>
-                Generator!
-            </h1>
-            <button onClick={handleGeneration}>Make me an outfit</button>
-            <br/>
-            <h2>Outfit:</h2>
-            {indexes && inventory &&
-                <div>
-                    <table style={tableStyle}>
-                        <thead>
-                            <tr>
-                                <th style={cellStyle}>Name</th>
-                                <th style={cellStyle}>Type</th>
-                                <th style={cellStyle}>Color</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr key={inventory[0][indexes.top].title}>
-                                <td style={cellStyle}>{inventory[0][indexes.top].title}</td>
-                                <td style={cellStyle}>{translateType(inventory[0][indexes.top].clothing_type)}</td>
-                                <td style={cellStyle}>{inventory[0][indexes.top].color}</td>                                
-                            </tr>
-                            <tr key={inventory[1][indexes.bottom].title}>
-                                <td style={cellStyle}>{inventory[1][indexes.bottom].title}</td>
-                                <td style={cellStyle}>{translateType(inventory[1][indexes.bottom].clothing_type)}</td>
-                                <td style={cellStyle}>{inventory[1][indexes.bottom].color}</td>                                
-                            </tr>
-                            <tr key={inventory[2][indexes.shoes].title}>
-                                <td style={cellStyle}>{inventory[2][indexes.shoes].title}</td>
-                                <td style={cellStyle}>{translateType(inventory[2][indexes.shoes].clothing_type)}</td>
-                                <td style={cellStyle}>{inventory[2][indexes.shoes].color}</td>                                
-                            </tr>
-                        </tbody>
-                    </table>
-                    {!alreadyLiked && <button onClick={handleLike}>I like this outfit</button>}
-                    {!alreadyLiked && <button onClick={handleDislike}>I don't like this outfit</button>}
-                </div>
-            }
+        <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
+            <div style={{width: '700px', margin: '0 auto'}}>
+                <Navbar/>
+                <h1>
+                    Generator!
+                </h1>
+                <button onClick={handleGeneration}>Make me an outfit</button>
+                <br/>
+                <h2>Outfit:</h2>
+                {indexes && inventory &&
+                    <div>
+                        <table style={tableStyle}>
+                            <thead>
+                                <tr>
+                                    <th style={cellStyle}>Name</th>
+                                    <th style={cellStyle}>Type</th>
+                                    <th style={cellStyle}>Color</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr key={inventory[0][indexes.top].title}>
+                                    <td style={cellStyle}>{inventory[0][indexes.top].title}</td>
+                                    <td style={cellStyle}>{translateType(inventory[0][indexes.top].clothing_type)}</td>
+                                    <td style={cellStyle}>{inventory[0][indexes.top].color}</td>                                
+                                </tr>
+                                <tr key={inventory[1][indexes.bottom].title}>
+                                    <td style={cellStyle}>{inventory[1][indexes.bottom].title}</td>
+                                    <td style={cellStyle}>{translateType(inventory[1][indexes.bottom].clothing_type)}</td>
+                                    <td style={cellStyle}>{inventory[1][indexes.bottom].color}</td>                                
+                                </tr>
+                                <tr key={inventory[2][indexes.shoes].title}>
+                                    <td style={cellStyle}>{inventory[2][indexes.shoes].title}</td>
+                                    <td style={cellStyle}>{translateType(inventory[2][indexes.shoes].clothing_type)}</td>
+                                    <td style={cellStyle}>{inventory[2][indexes.shoes].color}</td>                                
+                                </tr>
+                            </tbody>
+                        </table>
+                        {!alreadyLiked && <button onClick={handleLike}>I like this outfit</button>}
+                        {!alreadyLiked && <button onClick={handleDislike}>I don't like this outfit</button>}
+                    </div>
+                }
+            </div>
         </div>
     );
 }

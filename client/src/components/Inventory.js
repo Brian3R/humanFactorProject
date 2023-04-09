@@ -65,77 +65,79 @@ const Inventory = () => {
     };
 
     return (
-        <div>
-            <Navbar/>
-            <h1>
-                Inventory!
-            </h1>
-            <h2>
-                Tops:
-            </h2>
-            <table style={tableStyle}>
-                <thead>
-                    <tr>
-                        <th style={cellStyle}>Name</th>
-                        <th style={cellStyle}>Type</th>
-                        <th style={cellStyle}>Color</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data[0] && data[0].map((item) => (
-                            <tr key={item.title}>
-                                <td style={cellStyle}>{item.title}</td>
-                                <td style={cellStyle}>{translateType(item.clothing_type)}</td>
-                                <td style={cellStyle}>{item.color}</td>                                
-                                <td style={cellStyle}><button onClick={() => handleDeletion(item)}>Delete</button></td>
-                            </tr>
-                    ))}
-                </tbody>
-            </table>
-            <h2>
-                Bottoms:
-            </h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th style={cellStyle}>Name</th>
-                        <th style={cellStyle}>Type</th>
-                        <th style={cellStyle}>Color</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data[1] && data[1].map((item) => (
-                            <tr key={item.title}>
-                                <td style={cellStyle}>{item.title}</td>
-                                <td style={cellStyle}>{translateType(item.clothing_type)}</td>
-                                <td style={cellStyle}>{item.color}</td>
-                                <td style={cellStyle}><button onClick={() => handleDeletion(item)}>Delete</button></td>
-                            </tr>
-                    ))}
-                </tbody>
-            </table>
-            <h2>
-                Shoes:
-            </h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th style={cellStyle}>Name</th>
-                        <th style={cellStyle}>Type</th>
-                        <th style={cellStyle}>Color</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data[2] && data[2].map((item) => (
-                            <tr key={item.title}>
-                                <td style={cellStyle}>{item.title}</td>
-                                <td style={cellStyle}>{translateType(item.clothing_type)}</td>
-                                <td style={cellStyle}>{item.color}</td>
-                                <td style={cellStyle}><button onClick={() => handleDeletion(item)}>Delete</button></td>
-                            </tr>
-                    ))}
-                </tbody>
-            </table>
+        <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
+            <div style={{width: '700px', margin: '0 auto'}}>
+                <Navbar/>
+                <h1>
+                    Inventory!
+                </h1>
+                <h2>
+                    Tops:
+                </h2>
+                <table style={tableStyle}>
+                    <thead>
+                        <tr>
+                            <th style={cellStyle}>Name</th>
+                            <th style={cellStyle}>Type</th>
+                            <th style={cellStyle}>Color</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data[0] && data[0].map((item) => (
+                                <tr key={item.title}>
+                                    <td style={cellStyle}>{item.title}</td>
+                                    <td style={cellStyle}>{translateType(item.clothing_type)}</td>
+                                    <td style={cellStyle}>{item.color}</td>                                
+                                    <td style={cellStyle}><button onClick={() => handleDeletion(item)}>Delete</button></td>
+                                </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <h2>
+                    Bottoms:
+                </h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style={cellStyle}>Name</th>
+                            <th style={cellStyle}>Type</th>
+                            <th style={cellStyle}>Color</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data[1] && data[1].map((item) => (
+                                <tr key={item.title}>
+                                    <td style={cellStyle}>{item.title}</td>
+                                    <td style={cellStyle}>{translateType(item.clothing_type)}</td>
+                                    <td style={cellStyle}>{item.color}</td>
+                                    <td style={cellStyle}><button onClick={() => handleDeletion(item)}>Delete</button></td>
+                                </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <h2>
+                    Shoes:
+                </h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style={cellStyle}>Name</th>
+                            <th style={cellStyle}>Type</th>
+                            <th style={cellStyle}>Color</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data[2] && data[2].map((item) => (
+                                <tr key={item.title}>
+                                    <td style={cellStyle}>{item.title}</td>
+                                    <td style={cellStyle}>{translateType(item.clothing_type)}</td>
+                                    <td style={cellStyle}>{item.color}</td>
+                                    <td style={cellStyle}><button onClick={() => handleDeletion(item)}>Delete</button></td>
+                                </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }
