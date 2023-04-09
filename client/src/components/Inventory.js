@@ -5,18 +5,24 @@ import {useState, useEffect} from 'react';
 
 const Inventory = () => {
     const [data,setData] = useState([]);
-
     useEffect(() => {
         fetchInventory();
     },[])
-
     const fetchInventory = async () => {
-        
         const response = await fetch('http://localhost:8080/api/test/' + localStorage.getItem('userid'))
         const responseParsed = await response.json()
         setData(responseParsed.inventory)
     }
-
+    if(!localStorage.getItem('userid')) {
+        return (
+            <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
+                <div style={{width: '800px', margin: '0 auto'}}>
+                    <Navbar/>
+                    <p>Please log in!</p>
+                </div>
+            </div>
+        );
+    }
     if(!data) {return <div>Loading...</div>}
 
     const translateType = (type) => {
@@ -61,12 +67,13 @@ const Inventory = () => {
     const cellStyle = {
         width: '150px',
         border: '2px solid black',
-        padding: '8px'
+        padding: '8px',
+        backgroundColor:'#FFFFFF'
     };
 
     return (
         <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
-            <div style={{width: '700px', margin: '0 auto'}}>
+            <div style={{width: '800px', margin: '0 auto'}}>
                 <Navbar/>
                 <h1>
                     Inventory!

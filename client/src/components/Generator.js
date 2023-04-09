@@ -51,11 +51,32 @@ const Generator = () => {
     const cellStyle = {
         width: '150px',
         border: '2px solid black',
-        padding: '8px'
+        padding: '8px',
+        backgroundColor:'#ffffff'
     };
+    if(!localStorage.getItem('userid')) {
+        return (
+            <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
+                <div style={{width: '800px', margin: '0 auto'}}>
+                    <Navbar/>
+                    <p>Please log in!</p>
+                </div>
+            </div>
+        );
+    }
+    if(!(inventory && inventory[1] && inventory[2] && inventory[3])) {
+        return (
+            <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
+                <div style={{width: '800px', margin: '0 auto'}}>
+                    <Navbar/>
+                    <p>Please put at least one item in each category (top, bottom, shoes)</p>
+                </div>
+            </div>
+        );
+    }
     return (
         <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
-            <div style={{width: '700px', margin: '0 auto'}}>
+            <div style={{width: '800px', margin: '0 auto'}}>
                 <Navbar/>
                 <h1>
                     Generator!
