@@ -8,7 +8,7 @@ import outfitScoreChanger from '../functions/outfitScoreChanger';
 const Generator = () => {
     const [inventory, setInventory] = useState([]);
     const [indexes, setIndexes] = useState(null);
-    let alreadyLiked = false;
+    const [alreadyLiked, setAlreadyLiked] = useState(false);
     useEffect(() => {
         fetchInventory();
     },[]);
@@ -19,11 +19,12 @@ const Generator = () => {
     }
     const handleGeneration = () => {
         setIndexes(generation(inventory));
+        setAlreadyLiked(false);
     }
     const handleLike = () => {
         if(!alreadyLiked) {
             outfitScoreChanger(indexes.top,indexes.bottom,indexes.shoes,true);
-            alreadyLiked = true;
+            setAlreadyLiked(true);
         }
     }
     const handleDislike = () => {
@@ -58,10 +59,10 @@ const Generator = () => {
             <h1>
                 Generator!
             </h1>
-            {!indexes && <button onClick={handleGeneration}>Make me an outfit</button>}
+            <button onClick={handleGeneration}>Make me an outfit</button>
             <br/>
             <h2>Outfit:</h2>
-            {indexes &&
+            {indexes && inventory &&
                 <div>
                     <table style={tableStyle}>
                         <thead>
@@ -90,7 +91,7 @@ const Generator = () => {
                         </tbody>
                     </table>
                     <button onClick={handleLike}>I like this outfit</button>
-                    <button onClick={handleDislike}>I don't like this outfit</button>
+                    {!alreadyLiked && <button onClick={handleDislike}>I don't like this outfit</button>}
                 </div>
             }
         </div>
