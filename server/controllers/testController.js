@@ -9,7 +9,7 @@ const getUsers = async (req, res) => {
 
 // get single user
 const getUser = async (req,res) => {
-    const {id} = req.params
+    const {id} = req.params;
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error: 'No Such User'})
     }
@@ -19,6 +19,8 @@ const getUser = async (req,res) => {
     }
     res.status(200).json(user)
 }
+
+//get user by username
 
 //post new user
 const createUser = async (req,res) => {
@@ -74,4 +76,5 @@ module.exports ={
     deleteUser,
     //deleteUsers,
     updateUser,
+    
 }
