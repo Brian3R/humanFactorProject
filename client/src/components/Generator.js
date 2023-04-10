@@ -64,7 +64,27 @@ const Generator = () => {
             </div>
         );
     }
-    if(!(inventory && inventory[0] && inventory[1] && inventory[2])) {
+    if(!inventory) {
+        return (
+            <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
+                <div style={{width: '800px', margin: '0 auto'}}>
+                    <Navbar/>
+                    <p>Loading...</p>
+                </div>
+            </div>
+        );
+    }
+    if(!(inventory[0] && inventory[1] && inventory[2])) {
+        return (
+            <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
+                <div style={{width: '800px', margin: '0 auto'}}>
+                    <Navbar/>
+                    <p>Please put at least one item in each category (top, bottom, shoes)</p>
+                </div>
+            </div>
+        );
+    }
+    if(!inventory[0].length || !inventory[1].length || !inventory[2].length) {
         return (
             <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
                 <div style={{width: '800px', margin: '0 auto'}}>
