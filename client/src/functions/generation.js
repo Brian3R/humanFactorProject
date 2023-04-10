@@ -56,20 +56,28 @@ function generation (inventory){
         }
     }
 
+    console.log("first shirt: ", score1Index)
+    console.log("second shirt: ", score2Index)
+    console.log("third shirt: ", score3Index)
     let totalScore = score1 + score2 + score3;
+    console.log("total score: ", totalScore)
     let randomSeed = Math.floor(Math.random() * totalScore)
+    console.log("randomSeed: ", randomSeed)
 
     if (randomSeed < score1){
+        console.log("choosing shirt 1")
         selectedShirtIndex = score1Index;
         selectedShirtTitle = inventory[shirtIndex][score1Index].title;
         shirtColor = inventory[shirtIndex][score1Index].color;
     }
-    else if(randomSeed < score2){
+    else if(randomSeed < score1 + score2){
+        console.log("choosing shirt 2")
         selectedShirtIndex = score2Index;
         selectedShirtTitle = inventory[shirtIndex][score2Index].title;
         shirtColor = inventory[shirtIndex][score2Index].color;
     }
-    else{
+    else if(randomSeed < score1 + score2 + score3){
+        console.log("choosing shirt 3")
         selectedShirtIndex = score3Index;
         selectedShirtTitle = inventory[shirtIndex][score3Index].title;
         shirtColor = inventory[shirtIndex][score3Index].color;
