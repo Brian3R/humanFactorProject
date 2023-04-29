@@ -46,6 +46,27 @@ app.get('/', (req,res) =>{
     res.json({mssg: 'Welcome guys'})
 })
 
+  testRoutes.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  });
+  
+  testRoutes.get('/additem', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  });
+  testRoutes.get('/generator', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  });
+  testRoutes.get('/inventory', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  });
+  testRoutes.get('/signUp', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  });
+  testRoutes.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  });
+  
+
 app.use("/api/test", testRoutes);
  
 
