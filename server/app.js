@@ -37,33 +37,33 @@ app.use(cors({origin: true, credentials: true}));
 
 //routes
 
-app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, '../client/public')));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+    res.sendFile(path.join(__dirname, '../client/public', 'index.html'));
   }); 
 app.get('/', (req,res) =>{
     res.json({mssg: 'Welcome guys'})
 })
 
   testRoutes.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
   });
   
   testRoutes.get('/additem', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
   });
   testRoutes.get('/generator', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
   });
   testRoutes.get('/inventory', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
   });
   testRoutes.get('/signUp', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
   });
   testRoutes.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
   });
   
 
