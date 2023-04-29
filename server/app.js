@@ -65,6 +65,9 @@ app.get('/', (req,res) =>{
   testRoutes.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
   });
+  testRoutes.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
+  });
   
 
 app.use("/api/test", testRoutes);
