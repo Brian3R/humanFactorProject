@@ -4,14 +4,21 @@ import SignUpForm from './forms/SignUpForm';
 
 const SignUp = () => {
     return(
-        <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
-            <div style={{width: '800px', margin: '0 auto'}}>
+        <div className='page'>
+            <div>
                 <Navbar/>
-                <h1>
+                <h1 className='text'>
                     Sign Up
                 </h1>
+                <p className='text' style={{width:'400px'}}>
+                    WARNING: This website is a class project, and as such, does not have robust account security.
+                    Please do not use any password that you use for other websites.
+                </p>
                 <SignUpForm/>
             </div>
+            <br/>
+            <br/>
+            <p> </p>
         </div>
     );
 }

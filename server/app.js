@@ -7,10 +7,13 @@ const cors = require("cors");
 const testRoutes = require('./routes/test');
 
 require("dotenv").config();
+const path = require('path');
 
 //app
 const app = express();
-
+app.use(express.static("public"))
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
 //db
 mongoose.connect(process.env.MONGO_URI, {
@@ -33,6 +36,12 @@ app.use(morgan("dev"));
 app.use(cors({origin: true, credentials: true}));
 
 //routes
+/*
+app.use(express.static(path.join(__dirname, '../TheArmoryFrontend/public')));
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../TheArmoryFrontend/public', 'index.html'));
+  }); */
 app.get('/', (req,res) =>{
     res.json({mssg: 'Welcome guys'})
 })

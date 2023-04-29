@@ -16,7 +16,10 @@ const clothing = new Schema({
         type: Array,
         items: [clothing]
 })
-
+const outfits = new Schema({
+        type: Array,
+        items: [clothing]
+})
 const userSchema = new Schema({
     name:{
         type: String,
@@ -30,6 +33,22 @@ const userSchema = new Schema({
         type: Array,
         items: [body_region]
     },
+    saved_outfits:{
+        type: Array,
+        items: [outfits]
+    },
+    location:{
+        type: String,
+        required : false
+    },
+    dislike_count:{
+        type: Number,
+        required: false
+    },
+    like_count:{
+        type: Number,
+        required: false
+    }
     
 }, {timestamps: true})
 

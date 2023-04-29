@@ -40,7 +40,7 @@ const NewItemForm = () => {
             return;
         }
         try {
-            const response = await fetch('http://localhost:8080/api/test/'+ sessionStorage.getItem('userid'));
+            const response = await fetch('https://armory-api.onrender.com/api/test/'+ sessionStorage.getItem('userid'));
             const user = await response.json();
             const newItem = {
                 title: name,
@@ -50,7 +50,7 @@ const NewItemForm = () => {
                 favorability: favorability
             };
             user.inventory[region].push(newItem);
-            const updateResponse = await fetch('http://localhost:8080/api/test/'+ sessionStorage.getItem('userid'), {
+            const updateResponse = await fetch('https://armory-api.onrender.com/api/test/'+ sessionStorage.getItem('userid'), {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
@@ -63,12 +63,12 @@ const NewItemForm = () => {
             setType('');
             setRegion(-1);
             setColor('');
-            window.location.reload(true);
+           //window.location.reload(true);
         }
         catch (error) {
             console.error(error);
         }
-        window.location.reload(true);
+        //window.location.reload(true);
     }
     const renderTypeDropdown = () => {
         switch(region) {
@@ -104,11 +104,11 @@ const NewItemForm = () => {
     }
     return (
         <form onSubmit={handleSubmit}>
-            <label>Enter your garment name:</label>
+            <label className='text'>Enter your garment name:</label>
             <br/>
             <input type="text" value={name} onChange={handleNameChange}/>
             <br/>
-            <label>Select your item's body region:</label>
+            <label className='text'>Select your item's body region:</label>
             <br/>
             <select onChange={handleRegionChange}>
                 <option value={'-1'}>Select a region</option>
@@ -117,11 +117,11 @@ const NewItemForm = () => {
                 <option value={'2'}>Shoes</option>
             </select>
             <br/>
-            {region !== -1 && <label>Select your item's type:</label>}
+            {region !== -1 && <label className='text'>Select your item's type:</label>}
             <br/>
             {renderTypeDropdown()}
             <br/>
-            <label>Select your garment's color:</label>
+            <label className='text'>Select your garment's color:</label>
             <br/>
             <select onChange={handleColorChange}>
                 <option value={''}>Select a color</option>
@@ -140,7 +140,7 @@ const NewItemForm = () => {
                 <option value={'black'}>Black</option>
             </select>
             <br/>
-            <label>How much do you like this item (1-10)</label>
+            <label className='text'>How much do you like this item (1-10)</label>
             <br/>
             <select onChange={handleFavorabilityChange}>
                 <option value={''}>Select a favorability</option>
@@ -157,7 +157,7 @@ const NewItemForm = () => {
                 <option value={'10'}>10</option>
             </select>
             <br/>
-            {failure && <p style={{color:'red'}}>You must fill all fields before submitting</p>}
+            {failure && <p className='text'>You must fill all fields before submitting</p>}
             <br/>
             <SubmitButton/>
         </form>

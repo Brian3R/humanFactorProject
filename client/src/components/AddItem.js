@@ -5,23 +5,29 @@ import NewItemForm from './newitem/NewItemForm';
 const AddItem = () => {
     if(!sessionStorage.getItem('userid')) {
         return (
-            <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
-                <div style={{width: '800px', margin: '0 auto'}}>
+            <div className='page'>
+                <div>
                     <Navbar/>
-                    <p>Please log in!</p>
+                    <p className='text'>Please log in!</p>
                 </div>
+                <br/>
+            <br/>
+            <p> </p>
             </div>
         );
     }
     return(
-        <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
-            <div style={{width: '800px', margin: '0 auto'}}>
+        <div className='page'>
+            <div>
                 <Navbar/>
-                <h1>
+                <h1 className='text'>
                     Add Item!
                 </h1>
                 <NewItemForm/>
             </div>
+            <br/>
+            <br/>
+            <p> </p>
         </div>
     );
 }

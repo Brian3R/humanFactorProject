@@ -16,7 +16,7 @@ const SignUpForm = () => {
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const check = await fetch('http://localhost:8080/api/test/signup', {
+        const check = await fetch('https://thearmory-api.onrender.com/api/test/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ const SignUpForm = () => {
         const data = await check.json();
         if(data.success){
             try {
-                const response = await fetch('http://localhost:8080/api/test/', {
+                const response = await fetch('https://thearmory-api.onrender.com/api/test/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -36,7 +36,9 @@ const SignUpForm = () => {
                         _id:"hello",
                         name: name,
                         password: password,
-                        inventory: [[],[],[]]
+                        inventory: [[],[],[]],
+                        dislike_count: 0,
+                        like_count: 0
                     })
                 }
                 );
@@ -47,13 +49,13 @@ const SignUpForm = () => {
                 console.error(error);
             }
             await setFailure(false);
-            const response = await fetch('http://localhost:8080/api/test/search/' + name);
+            const response = await fetch('https://thearmory-api.onrender.com/api/test/search/' + name);
                 let user = await response.json();
                 setName('');
                 setPassword('');
                 sessionStorage.setItem('userid', user._id)
 
-                window.location.reload(true);
+                //window.location.reload(true);
 
         }
         else{
@@ -63,15 +65,15 @@ const SignUpForm = () => {
     }
     return (
         <form onSubmit={handleSubmit}>
-            <label>Enter your Username:</label>
+            <label className='text'>Enter your Username:</label>
             <br/>
             <input type="text" value={name} onChange={handleNameChange}/>
             <br/>
-            <label>Enter your Password:</label>
+            <label className='text'>Enter your Password:</label>
             <br/>
             <input type="text" value={password} onChange={handlePasswordChange}/>
             <br/>
-            {failure && <p style={{color:'red'}}>Username already exists. Please try again.</p>}
+            {failure && <p className='text'>Username already exists. Please try again.</p>}
             <br/>
             <SubmitButton/>
         </form>

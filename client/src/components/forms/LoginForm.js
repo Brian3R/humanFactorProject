@@ -1,6 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import SubmitButton from '../newitem/SubmitButton';
+import '../../App.css'
 
 
 const LoginForm = () => {
@@ -17,7 +18,7 @@ const LoginForm = () => {
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const check = await fetch('http://localhost:8080/api/test/login', {
+        const check = await fetch('https://thearmory-api.onrender.com/api/test/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -28,7 +29,7 @@ const LoginForm = () => {
         const data = await check.json();
         if(data.success){
             try {
-                const response = await fetch('http://localhost:8080/api/test/search/' + name);
+                const response = await fetch('https://thearmory-api.onrender.com/api/test/search/' + name);
                 let user = await response.json();
                 setName('');
                 setPassword('');
@@ -38,7 +39,7 @@ const LoginForm = () => {
                 console.error(error);
             }
             await setFailure(false);
-            window.location.reload(true);
+            //window.location.reload(true);
             console.log("User Id: " + sessionStorage.getItem('userid'))
         }
         else{
@@ -47,15 +48,15 @@ const LoginForm = () => {
     }
     return (
         <form onSubmit={handleSubmit}>
-            <label>Enter your Username:</label>
+            <label className='text'>Enter your Username:</label>
             <br/>
             <input type="text" value={name} onChange={handleNameChange}/>
             <br/>
-            <label>Enter your Password:</label>
+            <label className='text'>Enter your Password:</label>
             <br/>
             <input type="text" value={password} onChange={handlePasswordChange}/>
             <br/>
-            {failure && <p style={{color:'red'}}>Wrong username or password. Please try again.</p>}
+            {failure && <p className='text'>Wrong username or password. Please try again.</p>}
             <br/>
             <SubmitButton/>
         </form>
