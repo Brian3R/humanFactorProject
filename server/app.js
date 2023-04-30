@@ -11,7 +11,7 @@ const path = require('path');
 
 //app
 const app = express();
-app.use(express.static("public"))
+//app.use(express.static("public"))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
@@ -37,36 +37,36 @@ app.use(cors({origin: true, credentials: true}));
 
 //routes
 
-app.use(express.static(path.join(__dirname, '../client/public')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'public', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   }); 
 app.get('/', (req,res) =>{
     res.json({mssg: 'Welcome guys'})
 })
 
   testRoutes.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
   
   testRoutes.get('/additem', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
   testRoutes.get('/generator', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
   testRoutes.get('/inventory', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
   testRoutes.get('/signUp', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
   testRoutes.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
   testRoutes.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
   
 
